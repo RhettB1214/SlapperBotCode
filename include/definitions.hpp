@@ -1,6 +1,6 @@
 #ifndef DEFINITIONS
 #define DEFINITIONS
-
+#include "main.h"
 
 
 //Controller Inputs
@@ -22,6 +22,25 @@
 #define RightY pros::controller_analog_e_t::E_CONTROLLER_ANALOG_RIGHT_Y
 
 
+#define masterL1 master.get_digital(L1)
+#define masterL2 master.get_digital(L2)
+#define masterR1 master.get_digital(R1)
+#define masterR2 master.get_digital(R2)
+#define masterA master.get_digital(A)
+#define masterB master.get_digital(B)
+#define masterX master.get_digital(X)
+#define masterY master.get_digital(Y)
+#define masterUp master.get_digital(Up)
+#define masterDown master.get_digital(Down)
+#define masterRight master.get_digital(Right)
+#define masterLeft master.get_digital(Left)
+#define masterLeftX master.get_analog(LeftX)
+#define masterLeftY master.get_analog(LeftY)
+#define masterRightX master.get_analog(RightX)
+#define masterRightY master.get_analog(RightY)
+
+
+
 //Gearbox Definitions
 #define TORQUEBOX pros::motor_gearset_e_t::E_MOTOR_GEARSET_36
 #define REGBOX pros::motor_gearset_e_t::E_MOTOR_GEARSET_18
@@ -37,23 +56,23 @@
 
 
 //Motor Port Definitions
-#define INTAKE_PORT 2 //Defines a macro for the intake motor port and sets it to port 15
-#define SLAP_PORT 20 //Defines a macro for the slapper motor port and sets it to port 20
-#define LD1 1  //Defines a macro for the front left drive motor port and sets it to port 11
-#define LD2 3 //Defines a macro for the bottom back left drive motor port and sets it to port 12
-#define LD3 4 //Defines a macro for the top back left drive motor port and sets it to port 13
-#define RD1 10 //Defines a macro for the front right drive motor port and sets it to port 20
-#define RD2 9//Defines a macro for the bottom back right drive motor port and sets it to port 19 
-#define RD3 8 //Defines a macro for the top back right drive motor port and sets it to port 18
+#define INTAKE_PORT 18 //Defines a macro for the intake motor port and sets it to port 15
+#define SLAP_PORT 2 //Defines a macro for the slapper motor port and sets it to port 20
+#define LD1 10  //Defines a macro for the front left drive motor port and sets it to port 11
+#define LD2 20 //Defines a macro for the bottom back left drive motor port and sets it to port 12
+#define LD3 19 //Defines a macro for the top back left drive motor port and sets it to port 13
+#define RD1 12 //Defines a macro for the front right drive motor port and sets it to port 20
+#define RD2 11 //Defines a macro for the bottom back right drive motor port and sets it to port 19 
+#define RD3 1 //Defines a macro for the top back right drive motor port and sets it to port 18
 
 //Misc Port Definitions
-#define ODOM_ROT 21 //Defines a macro for the odometry rotation port and sets it to port 6
-#define IMU_PORT 7 //Defines a macro for the imu sensor port and sets it to port 14
+#define ODOM_ROT 17 //Defines a macro for the odometry rotation port and sets it to port 6
+#define IMU_PORT 14 //Defines a macro for the imu sensor port and sets it to port 14
 
 
 //Three-Wire Device Port Definitions
 #define WING_ADIDO 'H' //Defines a macro for the pnuematic wing solenoid adi port and sets it to three wire port H
-#define LIMIT_SWITCH 'A' //Defines a macro for the pnuematic arm solenoid adi port and sets it to three wire port G
+
 
 //Short Hands For Chassis
 #define poseX drive.getPose().x
