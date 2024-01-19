@@ -67,7 +67,7 @@
 
 //Misc Port Definitions
 #define ODOM_ROT 17 //Defines a macro for the odometry rotation port and sets it to port 6
-#define IMU_PORT 14 //Defines a macro for the imu sensor port and sets it to port 14
+#define IMU_PORT 16 //Defines a macro for the imu sensor port and sets it to port 14
 
 
 //Three-Wire Device Port Definitions

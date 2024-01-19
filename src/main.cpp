@@ -240,13 +240,12 @@ void autonomous()
 		//Red Far
 		case 1:
 		{
-			/*drive.setPose({15.5, -60, 270});
+			drive.setPose({15.5, -60, 270});
 			intakeMotor.move(127);
 			drive.moveToPose(8, -60, 270, 500);
 			drive.waitUntilDone();
 			pros::delay(150);
-			drive.moveToPose(15.5, -60, 270, 500,{.forwards = false});
-			drive.follow(RedFar1_txt, 15, 2500, false);*/
+			drive.follow(RedFar1_txt, 15, 2500, false);
 		}
 
 		//Red Close
@@ -262,7 +261,7 @@ void autonomous()
 			drive.waitUntil(4);
 			wingPnuem.set_value(1);
 			drive.waitUntilDone();
-			drive.follow(RedClose3_txt, 15, 500);
+			drive.follow(RedClose3_txt, 15, 2000);
 			drive.waitUntilDone();
 			wingPnuem.set_value(0);
 			pros::delay(500);
@@ -352,7 +351,7 @@ void opcontrol()
 
 		if (slapperFireToggle)
 		{
-			slapperMotor.move(95);
+			slapperMotor.move(115);
 		}
 		else
 		{
