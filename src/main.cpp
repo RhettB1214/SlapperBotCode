@@ -1,7 +1,7 @@
 #include "main.h"
 #include "lemlib/api.hpp"
-#include "autoSelect/selection.h"
-#include "gif-pros/gifclass.hpp"
+//#include "autoSelect/selection.h"
+//#include "gif-pros/gifclass.hpp"
 #include "definitions.hpp"
 
 
@@ -173,18 +173,18 @@ void screen() {
 }
 
 
-/**
+//**
  * Runs initialization code. This occurs as soon as the program is started.
  *
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() 
-{
+void initialize() {
+	pros::lcd::initialize(); // initialize brain screen
 	drive.calibrate();
-	intakeMotor.set_brake_mode(HOLD);
-	slapperMotor.set_brake_mode(COAST);
-	selector::init();
+	lDrive.set_brake_modes(HOLD);
+	rDrive.set_brake_modes(HOLD);
+	pros::Task screenTask(screen);
 }
 
 /**
@@ -218,89 +218,30 @@ void competition_initialize() {}
  */
 void autonomous() 
 {
+	drive.setPose({-32, -55, 270});
+	drive.follow(RedClose1_txt, 15, 2000);
+	drive.waitUntil(26);
+	intakeMotor.move(-127);
+	drive.waitUntilDone();
+	std::cout << "First Path Complete" << std::endl;
+	intakeMotor.move(0);
+	pros::delay(3000);
+	drive.follow(RedClose2_txt, 15, 1500, false);
+	drive.waitUntil(4);
+	wingPnuem.set_value(1);
+	drive.waitUntilDone();
+	std::cout << "Second Path Complete" << std::endl;
+	pros::delay(3000);
+	drive.follow(RedClose3_txt, 15, 2000);
+	drive.waitUntilDone();
+	std::cout << "Third Path Complete" << std::endl;
+	wingPnuem.set_value(0);
+	pros::delay(500);
+	pros::delay(3000);
+	drive.follow(RedClose4_txt, 15, 1500, false);
+	std::cout << "Fourth Path Complete" << std::endl;
 	
-	lDrive.set_brake_modes(HOLD);
-	rDrive.set_brake_modes(HOLD);
-	//drive.setPose({0,0,0});
-	//drive.moveToPose(0, 24, 0, 3000);
-
-		    /*drive.setPose({15.5, -60, 270});
-			intakeMotor.move(127);
-			drive.moveToPose(8, -60, 270, 500);
-			drive.waitUntilDone();
-			pros::delay(150);
-			drive.moveToPose(15.5, -60, 270, 500,{.forwards = false});
-			drive.waitUntilDone();
-			pros::delay(100);
-			drive.follow(RedFar1_txt, 15, 2500, false);*/
-
-
-	switch(selector::auton)
-	{
-		//Red Far
-		case 1:
-		{
-			drive.setPose({15.5, -60, 270});
-			intakeMotor.move(127);
-			drive.moveToPose(8, -60, 270, 500);
-			drive.waitUntilDone();
-			pros::delay(150);
-			drive.follow(RedFar1_txt, 15, 2500, false);
-		}
-
-		//Red Close
-		case 2:
-		{
-			drive.setPose({-32, -55, 270});
-			drive.follow(RedClose1_txt, 15, 2000);
-			drive.waitUntil(26);
-			intakeMotor.move(-127);
-			drive.waitUntilDone();
-			intakeMotor.move(0);
-			drive.follow(RedClose2_txt, 15, 1500, false);
-			drive.waitUntil(4);
-			wingPnuem.set_value(1);
-			drive.waitUntilDone();
-			drive.follow(RedClose3_txt, 15, 2000);
-			drive.waitUntilDone();
-			wingPnuem.set_value(0);
-			pros::delay(500);
-			drive.follow(RedClose4_txt, 15, 1500, false);
-
-		}
-
-		//Red Safe AWP Far
-		case 3:
-		{
-
-		}
-
-		//Blue Far
-		case -1:
-		{
-
-		}
-
-		//Blue Close
-		case -2:
-		{
-
-		}
-
-		//Blue Safe AWP Far
-		case -3:
-		{
-
-		}
-
-		//Skills
-		case 0:
-		{
-			
-		}
-	}
-
-
+	
 }
 
 /**
